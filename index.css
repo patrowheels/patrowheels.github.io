@@ -15,35 +15,57 @@ h1 {
     margin-left: 50px;
 }
 
+.containerMe{
+  text-align: center;
+  margin-bottom: 25px;
+  }
+
+  
 .container{
+display: flex;
 text-align: center;
 margin-bottom: 25px;
+flex-direction: row;
+margin-left: 80px;
+margin-right: 80px;
+
 }
+.aboutMe {
+  display: inline-block;
+  width: 80%;
+  height: 500px;
+  background-color: #eee;
+  background-color:rgba(255,255,255,0.3);
+  border-radius: 20px;
+ }
 
 
 .about {
- display: inline-block;
- width: 80%;
  height: 500px;
+ display: inline-block;
  background-color: #eee;
  border-radius: 20px;
- opacity: 50%;
- overflow: hidden;
+ background-color:rgba(255,255,255,0.3);
+ overflow: auto;
+ flex: 1;
+}
+
+#close-tab{
+  float: right;
 }
 
 .projects {
     width: 100%;
     text-align: center;
    }
-   .project {
+   .project  {
     display: inline-block;
     width: 250px;
     height: 300px;
     margin: 15px;
-    background-color: #eee;
     border-radius: 20px;
     text-align: center;
-    opacity: 50%;
+    background-color: red;
     border: 2px solid black;
    }
    .project a {

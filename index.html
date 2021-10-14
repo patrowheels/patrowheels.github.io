@@ -25,34 +25,40 @@
     <h1>Patrick Wheeler</h1>
   </div>
 
-  <div class="container">
-  <div class="about"></div>
+  <div class="containerMe">
+  <div class="aboutMe">
+    <ul class="tab">
+      <li><a class="tablinks" ><b>About Me</b></a></li>
+     
+  </ul>
+  </div>
 </div>
+
 
 <div class="container">
 <div class="about">
   <ul class="tab">
-    <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Web')">Web Development</a></li>
-    <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Python')">Python</a></li>
+    <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Web')"><b>Web Development & JS</b></a></li>
+    <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Python')"><b>Python</b></a></li>
+    <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Games')"><b>Games</b></a></li>
+    <li id="close-tab"><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, '')"><b>Close</b></a></li>
 </ul>
   <div class="projects">
 
   
-    <div class="project">
-      <a href="mathGame/index.html">Math Game</a>
-      <div class="wrapper">
-        <img src=""></img>
-        </div>
-      
-    </div>
+  
 
+    <div id="Python" class="text tabcontent">
     <div class="project">
       <a href="">Connect 4 Game</a>
       <div class="wrapper">
         <img src="">
         </div>
     </div>
+  </div>
 
+    <div id="Web" class="text tabcontent">
+      
     <div class="project">
       <a href="2dBreakoutGame/4.breakOutGame.html">Break Out Game</a>
       <div class="wrapper">
@@ -65,6 +71,16 @@
       <div class="wrapper">
         <img src="">
       </div>
+    </div>
+
+    </div>
+
+    <div id="Games" class="text tabcontent">
+    <div class="project">
+      <a href="mathGame/index.html">Math Game</a>
+      <div class="wrapper">
+        <img src=""></img>
+        </div>
     </div>
 
     <div class="project">
@@ -80,10 +96,13 @@
         <img src="">
       </div>
     </div>
+  </div>
+
 
   </div>
 </div>
 </div>
+
 
 <script src="index.js"></script>
 </body>
