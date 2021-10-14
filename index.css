@@ -1,0 +1,182 @@
+body {
+  background-image: url("pics/tacoma.jpg");
+  background-attachment: fixed;
+  background-size: cover; 
+
+}
+
+#header{
+    background-color: #eee;
+    display: flex;
+    margin-bottom: 50px;
+}
+
+h1 {
+    margin-left: 50px;
+}
+
+.container{
+text-align: center;
+margin-bottom: 25px;
+}
+
+
+.about {
+ display: inline-block;
+ width: 80%;
+ height: 500px;
+ background-color: #eee;
+ border-radius: 20px;
+ opacity: 50%;
+ overflow: hidden;
+}
+
+.projects {
+    width: 100%;
+    text-align: center;
+   }
+   .project {
+    display: inline-block;
+    width: 250px;
+    height: 300px;
+    margin: 15px;
+    background-color: #eee;
+    border-radius: 20px;
+    text-align: center;
+    opacity: 50%;
+    border: 2px solid black;
+   }
+   .project a {
+    color: black;
+    display: block;
+    padding: 14px 16px;
+    font-size: 17px;
+    color: black;
+   }
+
+
+/* Style the list */
+ul.tab {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #eee;
+}
+
+/* Float the list items side by side */
+ul.tab li {
+  float: left;
+}
+
+
+/* Style the links inside the list items */
+ul.tab li a {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 17px;
+  color: black;
+}
+
+
+/* Change background color of links on hover */
+ul.tab li a:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+   #logo {
+    height: 120px;
+    width: 120px;
+  }
+  
+  .circle {
+    border-radius: 50%;
+    border-top: 10px solid red;
+    border-right: 10px solid red;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: relative;
+    animation-name: spin;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    display: inline-block;
+  }
+  
+  #c1 {
+    height: 100px;
+    width: 100px;
+    animation-duration: 10s;
+  }
+  
+  #c2 {
+    border-top-color: orange;
+    border-right-color: orange;
+    height: 80px;
+    width: 80px;
+    animation-duration: 10s;
+  }
+  
+  #c3 {
+    border-top-color: yellow;
+    border-right-color: yellow;
+    height: 60px;
+    width: 60px;
+    animation-duration: 10s;
+  }
+  
+  #c4 {
+    border-top-color: green;
+    border-right-color: green;
+    height: 40px;
+    width: 40px;
+    animation-duration: 10s;
+  }
+  
+  #c5 {
+    border-top-color: blue;
+    border-right-color: blue;
+    height: 20px;
+    width: 20px;
+    animation-duration: 10s;
+  }
+  
+  #c6 {
+    border-top-color: purple;
+    border-right-color: purple;
+    height: 0;
+    width: 0;
+    animation-duration: 10s;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(720deg);
+    }
+  }

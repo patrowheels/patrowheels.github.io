@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Breakout Game</title>
+    <style>
+    	* { padding: 0; margin: 0; }
+        canvas { background: #eee; display: block; margin: auto; margin-top: 25px ; border: 4px solid black; }
+        h1 {text-align: center; font-size: 100px;}
+    </style>
+</head>
+<body>
+    <!-- Code to where player can choose difficulty level easy medium or hard  -->
+    <!-- fix bug to where when ball hits any edge of brick it bounces off not overlapping at all -->
+
+
+
+    
+
+
+
+
+<h1>Breakout</h1>
+<canvas id="myCanvas" width="480" height="320" onclick=draw()></canvas>
+
+<script>
+
+	var canvas = document.getElementById("myCanvas"); // store refernce to canvas element in canvas variable
+var ctx = canvas.getContext("2d"); // use this to store the 2d rendering context ( the actual tool to paint on canvas)
+//step 10
+var ballRadius = 10; // this will hod the radius of the drawn circle and be used for calculations
+//7. define starting points in variables instead of hard coded positions and use x and y in the arc property of the draw function instead of hard coded positions
+var x = canvas.width/2; // equals a starting position number for width
+var y = canvas.height-30; // equals a starting position number for height
+//8. we want to add a small value to x and y after every frame has been drawn to make it appear like the ball is moving
+var dx = -2;
+var dy = -2;
+var color = generateRandomColor()
+var paddleHeight = 10;
+var paddleWidth = 75; // this is the width of the paddle
+var paddleX = (canvas.width-paddleWidth) / 2; //paddlex == 202.5 paddle x will be the paddles x position
+var rightPressed = false;
+var leftPressed = false;
+var lives = 2;
+var brickRowCount = 5;
+var brickColumnCount = 12;
+var brickWidth = 26;
+var brickHeight = 20;
+var brickPadding = 10;
+var brickOffsetTop = 30;
+var brickOffsetLeft = 30;
+var score = 0;
+playing = false;
+var difficulty1 = "easy"
+var difficulty1 = "medium"
+var difficulty1 = "Hard"
+
+
+
+
+
+
+
+var bricks = [];
+//this loop makes a bricks array of 5 arrays and puts x and y coddinates  in each of the 5 arrays
+for(var c=0; c<brickColumnCount; c++) { // while c (column) is less than 5 increment c by one
+    bricks[c] = []; // create an array at index c in bricks array (5 arrays in bricks)
+    for(var r=0; r<brickRowCount; r++) { //while r is less than 3 increment r by one
+         bricks[c][r] = { x: 0, y: 0, status: 1 }; // at brick index c r make coordinates x and y
+    }
+
+
+
+//When the keydown event is fired on any of the keys on your keyboard (when they are pressed), the keyDownHandler() function will be executed. 
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+// document.addEventListener("mousemove", mouseMoveHandler, false);
+
+function mouseMoveHandler(e) {
+    var relativeX = e.clientX - canvas.offsetLeft;
+    if(relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth/2;
+    }
+}
+
+function keyDownHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = true;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = true;
+    }
+}
+
+function keyUpHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = false;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = false;
+    }
+}
+
+function collisionDetection() {
+    for(var c=0; c<brickColumnCount; c++) {
+        for(var r=0; r<brickRowCount; r++) {
+            var b = bricks[c][r];
+            if(b.status == 1) {
+                if(x > b.x && x - ballRadius < b.x+brickWidth && y + ballRadius > b.y && y - ballRadius < b.y+brickHeight) {
+                    color = generateRandomColor()
+                    dy = -dy;
+                    b.status = 0;
+                    score++;
+                    if(score == brickRowCount*brickColumnCount) {
+                        alert("YOU WIN, CONGRATULATIONS!");
+                        document.location.reload();
+                        clearInterval(interval); // Needed for Chrome to end game
+                    }
+ 
+                    
+                }
+            }
+        }
+    }
+}
+
+function drawGuide() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("Use your arrow keys to move! ", 140, 20);
+}
+
+function drawStartLabel() {
+    ctx.font = "36px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("Click to play! ", 140, 150);
+}
+
+function drawStartGuide() {
+    ctx.font = "18px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("Click again to increase difficulty! ", 120, 190);
+}
+drawStartGuide();
+drawStartLabel();
+
+function drawScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("Score: "+score, 8, 20);
+}
+
+function drawLives() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+}
+
+}
+function drawBricks() {
+    for(var c=0; c<brickColumnCount; c++) {
+        for(var r=0; r<brickRowCount; r++) {
+            if(bricks[c][r].status == 1) {
+            var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft; /// 1st (__ * 85) + 30 = brickx 
+            var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop; /// 1st (__ * 30) + 30 = bricky 
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
+            ctx.beginPath();
+            ctx.rect(brickX, brickY, brickWidth, brickHeight);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.strokeStyle = "black"; 
+            ctx.stroke(); 
+            ctx.closePath();
+            }
+        }
+    }
+}
+
+//11. update ball radius into the function that draws the ball
+function drawBall() {
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2); // this create ball and positions it using x and y variables
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.strokeStyle = "black"; 
+    ctx.stroke(); 
+    ctx.closePath();
+}
+
+function drawPaddle() {
+    ctx.beginPath();
+    ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight); // 202.5 , 310 , 75 , 10
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.strokeStyle = "black"; 
+    ctx.stroke(); 
+    ctx.closePath();
+}
+
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+    drawPaddle();
+    drawBricks();
+    collisionDetection();
+    drawScore();
+    drawLives();
+    drawGuide();
+    
+    
+    
+   
+//12. make conditional statement to check ball radius isnt passing the top(y0),bottom(canvas height), left(x0), or right (canvas width)
+if(x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+    dx = -dx;
+    color = generateRandomColor()
+}
+
+if(y + dy < ballRadius) {
+    dy = -dy;
+    color = generateRandomColor()
+
+   
+    
+}else if(y + dy > canvas.height - ballRadius- paddleHeight){ // if y position is grows to where the edge of ball passes the paddle top
+    if(x > paddleX && x < paddleX + paddleWidth){ //if x position of ball is between the paddle width position and paddle start position
+        dy = -dy;
+        
+        
+        
+    }else if (y + dy > canvas.height - ballRadius){ // if y position is greater than the bottom of screen
+        
+        lives--;
+if(!lives) {
+    alert("GAME OVER! Your score was: " + score);
+    document.location.reload();
+    // clearInterval(interval); // Needed for Chrome to end game
+}
+else {
+    x = canvas.width/2;
+    y = canvas.height-30;
+    dx = 2;
+    dy = -2;
+    paddleX = (canvas.width-paddleWidth)/2;
+}
+    }
+}
+
+// getting the paddle to move left and right
+    if(rightPressed) {
+    paddleX += 7;
+    if (paddleX + paddleWidth > canvas.width){
+        paddleX = canvas.width - paddleWidth;
+    }
+}
+else if(leftPressed) {
+    paddleX -= 7;
+    if (paddleX < 0){
+        paddleX = 0;
+    }
+}
+    x += dx;
+    y += dy;  
+    requestAnimationFrame(draw); 
+     
+    
+}
+
+
+// trying to speed the ball up
+// function timedSpeed(){
+// setTimeout(function(){
+//         draw();
+//      },10000)
+
+//      setTimeout(function(){
+//         draw();
+//      },20000)
+//     }
+
+
+// var speed = 15;
+
+    // draw(); // interval = setInterval(draw, speed);
+
+
+
+
+
+
+
+
+
+
+console.log(bricks);
+
+
+//generates random color 
+function generateRandomColor(){
+    randomColor = '#'+Math.floor(Math.random()*16777215).toString(16); // this line generate a random color in hexa-decimal format
+    // and the 16 parameter is the number for the hexa-decima conversion format
+    return randomColor;
+    //random color will be freshly served
+}
+document.body.style.backgroundColor = "violet"//"#50e87b"  generateRandomColor() // -> #e1ac94 //changes pages background color
+
+
+document.getElementById("myCanvas").style.backgroundColor =  "gold" //"darkblue" generateRandomColor()
+</script>
+
+</body>
+</html>
