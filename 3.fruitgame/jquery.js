@@ -95,7 +95,7 @@ $("#fruit1").mouseover(function(){
 function addHearts(){
     $("#trialsLeft").empty();
     for(i = 0; i < trialsLeft; i++){
-        $("#trialsLeft").append(' <img src="images/Heart.png" class="life"> ');
+        $("#trialsLeft").append(' <img src="images/heart.png" class="life"> ');
         
     }
     // this below way of showing fruit take alot of memory each time
