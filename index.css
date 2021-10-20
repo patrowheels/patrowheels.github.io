@@ -91,6 +91,7 @@ margin-right: 80px;
 .projects {
     width: 100%;
     text-align: center;
+    
    }
    .project {
     display: inline-block;
@@ -98,21 +99,29 @@ margin-right: 80px;
     height: 300px;
     margin: 15px;
     border-radius: 20px;
-    text-align: center;
     background-color: rgba(255,255,255,0.3);
     border: 2px solid black;
    }
 
    .wrapper :hover {
     background-color: rgba(150, 177, 75, 0.8);
+    border-radius: 10%;
    } 
 
    .project a {
-    color: black;
     display: block;
     padding: 14px 16px;
     font-size: 17px;
     color: black;
+   }
+
+   .project-image{
+     margin-top: 15px;
+   }
+
+   .text{
+     font-size: 22px;
+     font-family: 'Roboto Slab', serif , Arial, sans-serif;
    }
 
 
